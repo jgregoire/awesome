@@ -20,71 +20,71 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 
---{{ base16-material-darker theme
-base16materialdarker = {}
-base16materialdarker.base00 = "#212121" -- ----
-base16materialdarker.base01 = "#303030" -- ---
-base16materialdarker.base02 = "#353535" -- --
-base16materialdarker.base03 = "#4A4A4A" -- -
-base16materialdarker.base04 = "#B2CCD6" -- +
-base16materialdarker.base05 = "#EEFFFF" -- ++
-base16materialdarker.base06 = "#EEFFFF" -- +++
-base16materialdarker.base07 = "#FFFFFF" -- ++++
-base16materialdarker.base08 = "#F07178" -- red
-base16materialdarker.base09 = "#F78C6C" -- orange
-base16materialdarker.base0A = "#FFCB6B" -- yellow
-base16materialdarker.base0B = "#C3E88D" -- green
-base16materialdarker.base0C = "#89DDFF" -- aqua/cyan
-base16materialdarker.base0D = "#82AAFF" -- blue
-base16materialdarker.base0E = "#C792EA" -- purple
-base16materialdarker.base0F = "#FF5370" -- brown
---}}
+local base16materialdarker = {
+	base00 = "#212121", -- ----
+	base01 = "#303030", -- ---
+	base02 = "#353535", -- --
+	base03 = "#4A4A4A", -- -
+	base04 = "#B2CCD6", -- +
+	base05 = "#EEFFFF", -- ++
+	base06 = "#EEFFFF", -- +++
+	base07 = "#FFFFFF", -- ++++
+	base08 = "#F07178", -- red
+	base09 = "#F78C6C", -- orange
+	base0A = "#FFCB6B", -- yellow
+	base0B = "#C3E88D", -- green
+	base0C = "#89DDFF", -- aqua/cyan
+	base0D = "#82AAFF", -- blue
+	base0E = "#C792EA", -- purple
+	base0F = "#FF5370", -- brown
+}
 
---{{ base16-black-metal-venom
-base16blackmetalvenom = {}
-base16blackmetalvenom.base00 = "#000000" -- ----
-base16blackmetalvenom.base01 = "#121212" -- ---
-base16blackmetalvenom.base02 = "#222222" -- --
-base16blackmetalvenom.base03 = "#333333" -- -
-base16blackmetalvenom.base04 = "#999999" -- +
-base16blackmetalvenom.base05 = "#c1c1c1" -- ++
-base16blackmetalvenom.base06 = "#999999" -- +++
-base16blackmetalvenom.base07 = "#c1c1c1" -- ++++
-base16blackmetalvenom.base08 = "#5f8787" -- red
-base16blackmetalvenom.base09 = "#aaaaaa" -- orange
-base16blackmetalvenom.base0A = "#79241f" -- yellow
-base16blackmetalvenom.base0B = "#f8f7f2" -- green
-base16blackmetalvenom.base0C = "#aaaaaa" -- aqua/cyan
-base16blackmetalvenom.base0D = "#888888" -- blue
-base16blackmetalvenom.base0E = "#999999" -- purple
-base16blackmetalvenom.base0F = "#444444" -- brown
+local base16blackmetalvenom = {
+	base00 = "#000000", -- ----
+	base01 = "#121212", -- ---
+	base02 = "#222222", -- --
+	base03 = "#333333", -- -
+	base04 = "#999999", -- +
+	base05 = "#c1c1c1", -- ++
+	base06 = "#999999", -- +++
+	base07 = "#c1c1c1", -- ++++
+	base08 = "#5f8787", -- red
+	base09 = "#aaaaaa", -- orange
+	base0A = "#79241f", -- yellow
+	base0B = "#f8f7f2", -- green
+	base0C = "#aaaaaa", -- aqua/cyan
+	base0D = "#888888", -- blue
+	base0E = "#999999", -- purple
+	base0F = "#444444", -- brown
+}
 --}}
 
 --{{ base16-railscasts theme
-base16railscasts = {}
-base16railscasts.base00 = "#2b2b2b" -- ----
-base16railscasts.base01 = "#272935" -- ---
-base16railscasts.base02 = "#3a4055" -- --
-base16railscasts.base03 = "#5a647e" -- -
-base16railscasts.base04 = "#d4cfc9" -- +
-base16railscasts.base05 = "#e6e1dc" -- ++
-base16railscasts.base06 = "#f4f1ed" -- +++
-base16railscasts.base07 = "#f9f7f3" -- ++++
-base16railscasts.base08 = "#da4939" -- red
-base16railscasts.base09 = "#cc7833" -- orange
-base16railscasts.base0A = "#ffc66d" -- yellow
-base16railscasts.base0B = "#a5c261" -- green
-base16railscasts.base0C = "#519f50" -- aqua/cyan
-base16railscasts.base0D = "#6d9cbe" -- blue
-base16railscasts.base0E = "#b6b3eb" -- purple
-base16railscasts.base0F = "#bc9458" -- brown
+local base16railscasts = {
+	base00 = "#2b2b2b", -- ----
+	base01 = "#272935", -- ---
+	base02 = "#3a4055", -- --
+	base03 = "#5a647e", -- -
+	base04 = "#d4cfc9", -- +
+	base05 = "#e6e1dc", -- ++
+	base06 = "#f4f1ed", -- +++
+	base07 = "#f9f7f3", -- ++++
+	base08 = "#da4939", -- red
+	base09 = "#cc7833", -- orange
+	base0A = "#ffc66d", -- yellow
+	base0B = "#a5c261", -- green
+	base0C = "#519f50", -- aqua/cyan
+	base0D = "#6d9cbe", -- blue
+	base0E = "#b6b3eb", -- purple
+	base0F = "#bc9458", -- brown
+}
 --}}
 
 theme.palette = base16railscasts
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
-theme.font                                      = "Fira Code 11"
+theme.font                                      = "Iosevka Term Extended 11"
 theme.fg_normal                                 = theme.palette.base05
 theme.fg_focus                                  = theme.palette.base08
 theme.fg_urgent                                 = theme.palette.base09
@@ -138,7 +138,7 @@ theme.widget_vol_mute                           = theme.dir .. "/icons/vol_mute.
 theme.widget_mail                               = theme.dir .. "/icons/mail.png"
 theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
 theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
+theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = dpi(1)
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
@@ -233,11 +233,11 @@ local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpc
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(my_table.join(
     awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
-    awful.button({ }, 1, function ()
+    awful.button({ }, 2, function ()
         os.execute("mpc prev")
         theme.mpd.update()
     end),
-    awful.button({ }, 2, function ()
+    awful.button({ }, 1, function ()
         os.execute("mpc toggle")
         theme.mpd.update()
     end),
@@ -323,6 +323,11 @@ local bat = lain.widget.bat({
 
 -- Pulse volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
+--volicon:buttons(mytable.join(
+--	awful.button({ }, 1, function ()
+--		os.execute("pactl set-sink-mute on")
+--		theme.volume.update()
+--	end)))
 theme.volume = lain.widget.pulse({
     settings = function()
         if volume_now.muted == "yes" then
@@ -408,14 +413,14 @@ function theme.at_screen_connect(s)
 			--theme.redshift,
 			spr,
             arrl_ld,
-            wibox.container.background(neticon, theme.bg_focus),
-            wibox.container.background(net.widget, theme.bg_focus),
+            wibox.container.background(mpdicon, theme.bg_focus),
+            wibox.container.background(theme.mpd.widget, theme.bg_focus),
             arrl_dl,
             volicon,
             theme.volume.widget,
             arrl_ld,
-            wibox.container.background(mpdicon, theme.bg_focus),
-            wibox.container.background(theme.mpd.widget, theme.bg_focus),
+            wibox.container.background(neticon, theme.bg_focus),
+            wibox.container.background(net.widget, theme.bg_focus),
             arrl_dl,
             --memicon,
     	    --mem.widget,
