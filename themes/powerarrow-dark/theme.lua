@@ -11,53 +11,10 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 
---local base16 = require("base16-material-darker.lua")
-
---local boop = base16.base07
-
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
-
-local base16materialdarker = {
-	base00 = "#212121", -- ----
-	base01 = "#303030", -- ---
-	base02 = "#353535", -- --
-	base03 = "#4A4A4A", -- -
-	base04 = "#B2CCD6", -- +
-	base05 = "#EEFFFF", -- ++
-	base06 = "#EEFFFF", -- +++
-	base07 = "#FFFFFF", -- ++++
-	base08 = "#F07178", -- red
-	base09 = "#F78C6C", -- orange
-	base0A = "#FFCB6B", -- yellow
-	base0B = "#C3E88D", -- green
-	base0C = "#89DDFF", -- aqua/cyan
-	base0D = "#82AAFF", -- blue
-	base0E = "#C792EA", -- purple
-	base0F = "#FF5370", -- brown
-}
-
-local base16blackmetalvenom = {
-	base00 = "#000000", -- ----
-	base01 = "#121212", -- ---
-	base02 = "#222222", -- --
-	base03 = "#333333", -- -
-	base04 = "#999999", -- +
-	base05 = "#c1c1c1", -- ++
-	base06 = "#999999", -- +++
-	base07 = "#c1c1c1", -- ++++
-	base08 = "#5f8787", -- red
-	base09 = "#aaaaaa", -- orange
-	base0A = "#79241f", -- yellow
-	base0B = "#f8f7f2", -- green
-	base0C = "#aaaaaa", -- aqua/cyan
-	base0D = "#888888", -- blue
-	base0E = "#999999", -- purple
-	base0F = "#444444", -- brown
-}
---}}
 
 --{{ base16-railscasts theme
 local base16railscasts = {
