@@ -41,7 +41,8 @@ theme.palette = base16railscasts
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
-theme.font                                      = "Iosevka Term Extended 11"
+--theme.font                                      = "Iosevka Term Extended 11"
+theme.font                                      = "Fira Code Regular 12"
 theme.fg_normal                                 = theme.palette.base05
 theme.fg_focus                                  = theme.palette.base08
 theme.fg_urgent                                 = theme.palette.base09
