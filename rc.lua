@@ -83,7 +83,7 @@ local themes = {
 local chosen_theme = themes[7]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "alacritty"
+local terminal     = "kitty"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "subl"
 local browser      = "firefox"
@@ -422,13 +422,13 @@ globalkeys = my_table.join(
     -- Volume control
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
-            os.execute("pactl set-sink-volume 1 +2%")
+            os.execute("pactl set-sink-volume 0 +2%")
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
-            os.execute("pactl set-sink-volume 1 -2%")
+            os.execute("pactl set-sink-volume 0 -2%")
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
