@@ -434,7 +434,7 @@ globalkeys = my_table.join(
         {description = "volume down", group = "hotkeys"}),
     awful.key({ }, "XF86AudioMute",
         function ()
-            os.execute("pactl set-sink-mute 1 toggle")
+            os.execute("pactl set-sink-mute 0 toggle")
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
