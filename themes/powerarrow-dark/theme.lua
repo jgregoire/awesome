@@ -42,7 +42,8 @@ theme.palette = base16railscasts
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 --theme.font                                      = "Iosevka Term Extended 11"
-theme.font                                      = "Fira Code Regular 12"
+--theme.font                                      = "Fira Code Regular 10"
+theme.font = os.getenv("AWESOME_FONT") or "Fira Code Regular 10"
 theme.fg_normal                                 = theme.palette.base05
 theme.fg_focus                                  = theme.palette.base08
 theme.fg_urgent                                 = theme.palette.base09
@@ -286,21 +287,6 @@ local volicon = wibox.widget.imagebox(theme.widget_vol)
 --		os.execute("pactl set-sink-mute on")
 --		theme.volume.update()
 --	end)))
-theme.volume = lain.widget.pulse({
-    settings = function()
-        if volume_now.muted == "yes" then
-            volicon:set_image(theme.widget_vol_mute)
-        elseif tonumber(volume_now.channel[1]) == 0 then
-            volicon:set_image(theme.widget_vol_no)
-        elseif tonumber(volume_now.channel[1]) <= 50 then
-            volicon:set_image(theme.widget_vol_low)
-        else
-            volicon:set_image(theme.widget_vol)
-        end
-
-        widget:set_markup(markup.font(theme.font, markup(theme.palette.base0A, " " .. volume_now.channel[1] .. "% ")))
-    end
-})
 
 
 -- Net
@@ -375,7 +361,7 @@ function theme.at_screen_connect(s)
             wibox.container.background(theme.mpd.widget, theme.bg_focus),
             arrl_dl,
             volicon,
-            theme.volume.widget,
+            --theme.volume.widget,
             arrl_ld,
             wibox.container.background(neticon, theme.bg_focus),
             wibox.container.background(net.widget, theme.bg_focus),
