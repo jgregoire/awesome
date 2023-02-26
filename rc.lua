@@ -72,9 +72,9 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "kitty"
 local editor       = os.getenv("EDITOR") or "nano"
-local gui_editor   = "subl"
+local gui_editor   = "neovide"
 local browser      = "firefox"
-local guieditor    = "subl"
+local guieditor    = "neovide"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
