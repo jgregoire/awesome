@@ -95,22 +95,22 @@ awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
---    awful.layout.suit.tile.left,
---    awful.layout.suit.tile.bottom,
---    awful.layout.suit.tile.top,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
---    awful.layout.suit.corner.ne,
---    awful.layout.suit.corner.sw,
---    awful.layout.suit.corner.se,
-    --lain.layout.cascade,
-    --lain.layout.cascade.tile,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.ne,
+    awful.layout.suit.corner.sw,
+    awful.layout.suit.corner.se,
+    lain.layout.cascade,
+    lain.layout.cascade.tile,
     lain.layout.centerwork,
     lain.layout.centerwork.horizontal,
     lain.layout.termfair,
@@ -119,23 +119,33 @@ awful.layout.layouts = {
 }
 
 awful.util.taglist_buttons = my_table.join(
+    -- Left Click a tag to view.
     awful.button({ }, 1, function(t) t:view_only() end),
+
+    -- Meta + Left Click a tag to move focused client there.
     awful.button({ modkey }, 1, function(t)
         if client.focus then
             client.focus:move_to_tag(t)
         end
     end),
+
+    -- Right click a tag to toggle it.
     awful.button({ }, 3, awful.tag.viewtoggle),
+
+    -- Meta + Right click a tag to...?
     awful.button({ modkey }, 3, function(t)
         if client.focus then
             client.focus:toggle_tag(t)
         end
     end),
+
+    -- Meta + wheel to scroll tags.
     awful.button({ modkey }, 4, function(t) awful.tag.viewnext(t.screen) end),
     awful.button({ modkey }, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
 awful.util.tasklist_buttons = my_table.join(
+    -- Left click task to toggle focus.
     awful.button({ }, 1, function (c)
         if c == client.focus then
             c.minimized = true
@@ -154,7 +164,11 @@ awful.util.tasklist_buttons = my_table.join(
             c:raise()
         end
     end),
+
+    -- Middle click task to kill.
     awful.button({ }, 2, function (c) c:kill() end),
+
+    -- Right click task to...?
     awful.button({ }, 3, function ()
         local instance = nil
 
@@ -167,6 +181,8 @@ awful.util.tasklist_buttons = my_table.join(
             end
         end
     end),
+
+    -- Mouse wheel scrolls task focus.
     awful.button({ }, 4, function () awful.client.focus.byidx(1) end),
     awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
 )
