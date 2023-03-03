@@ -185,6 +185,34 @@ lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+
+-- Make shit look nice.
+local nice = require('nice')
+nice({
+    titlebar_height = 24, -- default 38
+    titlebar_color  = '#272935',
+    titlebar_font   = 'Fira Code Regular 12',
+    close_color     = '#da4939',
+    minimize_color  = '#ffc66d',
+    maximize_color  = '#519f50',
+    floating_color  = '#a5c261',
+    ontop_color     = '#6d9cbe',
+    sticky_color    = '#b6b3eb',
+    titlebar_items  = {
+        left = {},
+        middle = 'title',
+        right = { 'sticky', 'ontop', 'floating', 'maximize', 'minimize', 'close' },
+    },
+    context_menu_theme = {
+        bg_focus = '#3a4055',
+        bg_normal = '#272935',
+        border_color = '#3a4055',
+        border_width = -1,
+        fg_focus = '#da4939',
+        fg_normal = '#e6e1dc',
+        font = 'Fira Code Regular 12',
+    }
+})
 -- }}}
 
 -- {{{ Menu
@@ -688,6 +716,7 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
+--[[
 client.connect_signal("request::titlebars", function(c)
     -- Custom
     if beautiful.titlebar_fun then
@@ -734,7 +763,7 @@ client.connect_signal("request::titlebars", function(c)
         layout = wibox.layout.align.horizontal
     }
 end)
-
+--]]
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = true})
