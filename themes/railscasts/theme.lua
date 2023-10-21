@@ -16,7 +16,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 
---{{ base16-railscasts theme
+--{{ base16railscasts theme
 local base16railscasts = {
 	base00 = "#2b2b2b", -- ----
 	base01 = "#272935", -- ---
@@ -36,8 +36,29 @@ local base16railscasts = {
 	base0F = "#bc9458", -- brown
 }
 --}}
+--{{ base16onedark theme
+local base16onedark = {
+    base00 = "#282c34",
+    base01 = "#353b45",
+    base02 = "#3e4451",
+    base03 = "#545862",
+    base04 = "#565c64",
+    base05 = "#abb2bf",
+    base06 = "#b6bdca",
+    base07 = "#c8ccd4",
+    base08 = "#e06c75",
+    base09 = "#d19a66",
+    base0A = "#e5c07b",
+    base0B = "#98c379",
+    base0C = "#56b6c2",
+    base0D = "#61afef",
+    base0E = "#c678dd",
+    base0F = "#be5046"
+}
+--}}
 
-theme.palette = base16railscasts
+-- theme.palette = base16railscasts
+theme.palette = base16onedark
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
@@ -212,13 +233,14 @@ theme.mpd = lain.widget.mpd({
         elseif mpd_now.state == "pause" then
             artist = " mpd "
             title  = "paused "
+            mpdicon:set_image(theme.widget_music)
         else
             artist = " mpd "
             title  = "idle "
             mpdicon:set_image(theme.widget_music)
         end
 
-        widget:set_markup(markup.font(theme.font, markup(theme.palette.base08, artist) .. title))
+        widget:set_markup(markup.font(theme.font, markup(theme.palette.base0C, artist) .. title))
     end
 })
 
