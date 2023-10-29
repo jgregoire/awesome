@@ -53,14 +53,14 @@ local base16onedark = {
     base0C = "#56b6c2",
     base0D = "#61afef",
     base0E = "#c678dd",
-    base0F = "#be5046"
+    base0F = "#be5046",
 }
 --}}
 
 -- theme.palette = base16railscasts
 theme.palette = base16onedark
 
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
+theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/railscasts"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 --theme.font                                      = "Iosevka Term Extended 11"
 theme.font                                      = os.getenv("AWESOME_FONT") or "Fira Code Regular 12"
@@ -95,10 +95,10 @@ theme.layout_max                                = theme.dir .. "/icons/max.png"
 theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
 theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
-theme.layout_centerwork							= theme.dir .. "/icons/centerwork.png"
-theme.layout_centerworkh						= theme.dir .. "/icons/centerworkh.png"
-theme.layout_termfair							= theme.dir .. "/icons/termfair.png"
-theme.layout_centerfair							= theme.dir .. "/icons/centerfair.png" 
+theme.layout_centerwork				= theme.dir .. "/icons/centerwork.png"
+theme.layout_centerworkh			= theme.dir .. "/icons/centerworkh.png"
+theme.layout_termfair				= theme.dir .. "/icons/termfair.png"
+theme.layout_centerfair				= theme.dir .. "/icons/centerfair.png"
 theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
 theme.widget_battery                            = theme.dir .. "/icons/battery.png"
 theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"

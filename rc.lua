@@ -190,26 +190,26 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 local nice = require('nice')
 nice({
     titlebar_height = 24, -- default 38
-    titlebar_color  = '#272935',
+    titlebar_color  = '#353b45',
     titlebar_font   = 'Fira Code Regular 12',
-    close_color     = '#da4939',
-    minimize_color  = '#ffc66d',
-    maximize_color  = '#519f50',
-    floating_color  = '#a5c261',
-    ontop_color     = '#6d9cbe',
-    sticky_color    = '#b6b3eb',
+    close_color     = '#e06c75',
+    minimize_color  = '#e5c07b',
+    maximize_color  = '#98c379',
+    floating_color  = '#56b6c2',
+    ontop_color     = '#61afef',
+    sticky_color    = '#c678dd',
     titlebar_items  = {
         left = {},
         middle = 'title',
         right = { 'sticky', 'ontop', 'floating', 'maximize', 'minimize', 'close' },
     },
     context_menu_theme = {
-        bg_focus = '#3a4055',
-        bg_normal = '#272935',
-        border_color = '#3a4055',
+        bg_focus = '#3e4451',
+        bg_normal = '#353b45',
+        border_color = '#3d4451',
         border_width = -1,
-        fg_focus = '#da4939',
-        fg_normal = '#e6e1dc',
+        fg_focus = '#e06c75',
+        fg_normal = '#abb2bf',
         font = 'Fira Code Regular 12',
     }
 })
