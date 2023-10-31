@@ -67,7 +67,7 @@ awful.spawn.with_shell(
 
 -- {{{ Variable definitions
 
-local chosen_theme = "railscasts"
+local chosen_theme = "ronkdar"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "kitty"
