@@ -1,10 +1,3 @@
---[[
-
-     Powerarrow Dark Awesome WM theme
-     github.com/lcpz
-
---]]
-
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
@@ -14,51 +7,7 @@ local dpi   = require("beautiful.xresources").apply_dpi
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
-local theme                                     = {}
-
---{{ base16railscasts theme
-local base16railscasts = {
-	base00 = "#2b2b2b", -- ----
-	base01 = "#272935", -- ---
-	base02 = "#3a4055", -- --
-	base03 = "#5a647e", -- -
-	base04 = "#d4cfc9", -- +
-	base05 = "#e6e1dc", -- ++
-	base06 = "#f4f1ed", -- +++
-	base07 = "#f9f7f3", -- ++++
-	base08 = "#da4939", -- red
-	base09 = "#cc7833", -- orange
-	base0A = "#ffc66d", -- yellow
-	base0B = "#a5c261", -- green
-	base0C = "#519f50", -- aqua/cyan
-	base0D = "#6d9cbe", -- blue
-	base0E = "#b6b3eb", -- purple
-	base0F = "#bc9458", -- brown
-}
---}}
---{{ base16onedark theme
-local base16onedark = {
-    base00 = "#282c34",
-    base01 = "#353b45",
-    base02 = "#3e4451",
-    base03 = "#545862",
-    base04 = "#565c64",
-    base05 = "#abb2bf",
-    base06 = "#b6bdca",
-    base07 = "#c8ccd4",
-    base08 = "#e06c75",
-    base09 = "#d19a66",
-    base0A = "#e5c07b",
-    base0B = "#98c379",
-    base0C = "#56b6c2",
-    base0D = "#61afef",
-    base0E = "#c678dd",
-    base0F = "#be5046",
-}
---}}
-
--- theme.palette = base16railscasts
--- theme.palette = base16onedark
+local theme = {}
 theme.palette = require('onedarkvivid')
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/railscasts"
@@ -119,7 +68,7 @@ theme.widget_mail                               = theme.dir .. "/icons/mail.png"
 theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = false
-theme.useless_gap                               = dpi(1)
+theme.useless_gap                               = dpi(2)
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -143,6 +92,7 @@ local markup = lain.util.markup
 local separators = lain.util.separators
 
 -- redshift
+local tempicon = wibox.widget.textbox("🌡")
 theme.redshift = wibox.widget.textbox()
 lain.widget.contrib.redshift.attach(
 	theme.redshift,
@@ -176,37 +126,6 @@ local clock = awful.widget.watch(
         widget:set_markup(" " .. markup.font(theme.font, stdout))
     end
 )
-
--- Calendar
-theme.cal = lain.widget.cal({
-    attach_to = { clock },
-    notification_preset = {
-        font = "xos4 Terminus 10",
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
-    }
-})
-
--- Mail IMAP check
-local mailicon = wibox.widget.imagebox(theme.widget_mail)
---[[ commented because it needs to be set before use
-mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            widget:set_markup(markup.font(theme.font, " " .. mailcount .. " "))
-            mailicon:set_image(theme.widget_mail_on)
-        else
-            widget:set_text("")
-            mailicon:set_image(theme.widget_mail)
-        end
-    end
-})
---]]
 
 -- MPD
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
@@ -242,30 +161,6 @@ theme.mpd = lain.widget.mpd({
         end
 
         widget:set_markup(markup.font(theme.font, markup(theme.palette.base0C, artist) .. title))
-    end
-})
-
--- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
-local mem = lain.widget.mem({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
-    end
-})
-
--- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
-    end
-})
-
--- Coretemp
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
     end
 })
 
@@ -341,6 +236,8 @@ local net = lain.widget.net({
 local spr     = wibox.widget.textbox(' ')
 local arrl_dl = separators.arrow_left(theme.bg_focus, "alpha")
 local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
+local arlr_dl = separators.arrow_right(theme.bg_focus, "alpha")
+local arlr_ld = separators.arrow_right("alpha", theme.bg_focus)
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -381,18 +278,19 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --spr,
+            spr,
+            wibox.container.background(s.mylayoutbox, theme.bg_focus),
+            arlr_ld,
             s.mytaglist,
             s.mypromptbox,
+            arlr_dl,
             spr,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            --spr,
-			--theme.redshift,
-			spr,
+            spr,
             arrl_ld,
             wibox.container.background(mpdicon, theme.bg_focus),
             wibox.container.background(theme.mpd.widget, theme.bg_focus),
@@ -403,29 +301,14 @@ function theme.at_screen_connect(s)
             wibox.container.background(neticon, theme.bg_focus),
             wibox.container.background(net.widget, theme.bg_focus),
             arrl_dl,
-            --memicon,
-    	    --mem.widget,
-            --arrl_ld,
-            --wibox.container.background(cpuicon, theme.bg_focus),
-            --wibox.container.background(cpu.widget, theme.bg_focus),
-            --arrl_dl,
             tempicon,
-			theme.redshift,
-            --temp.widget,
+            theme.redshift,
             arrl_ld,
-            --wibox.container.background(fsicon, theme.bg_focus),
-            --wibox.container.background(theme.fs.widget, theme.bg_focus),
-            --arrl_dl,
-            --baticon,
-            --bat.widget,
-            --arrl_ld,
             wibox.container.background(theme.weather.icon, theme.bg_focus),
             wibox.container.background(theme.weather.widget, theme.bg_focus),
             arrl_dl,
             clock,
             spr,
-            arrl_ld,
-            wibox.container.background(s.mylayoutbox, theme.bg_focus),
         },
     }
 end
