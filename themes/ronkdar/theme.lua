@@ -96,9 +96,9 @@ local icons = {
     pause = '  ',
     play = '  ',
     stop = '  ',
-    volume = '  ',
+    volume = '   ',
     volume2 = '  ',
-    mute = '  ',
+    mute = '   ',
     mute2 = ' ',
     wifi = ' ⇵   ',
     temp = '  ',
@@ -174,7 +174,9 @@ mpdicon:buttons(my_table.join(
     awful.button({ }, 3, function ()
         os.execute("mpc next")
         theme.mpd.update()
-    end)))
+    end)
+    )
+)
 theme.mpd = lain.widget.mpd({
     settings = function()
         if mpd_now.state == "play" then
@@ -204,32 +206,12 @@ theme.fs = lain.widget.fs({
         widget:set_markup(markup.font(theme.font, " " .. fs_now["/"].percentage .. "% "))
     end
 })
---
-
--- Battery
-local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat = lain.widget.bat({
-    settings = function()
-        if bat_now.status and bat_now.status ~= "N/A" then
-            if bat_now.ac_status == 1 then
-                baticon:set_image(theme.widget_ac)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                baticon:set_image(theme.widget_battery_empty)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                baticon:set_image(theme.widget_battery_low)
-            else
-                baticon:set_image(theme.widget_battery)
-            end
-            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
-        else
-            widget:set_markup(markup.font(theme.font, " AC "))
-            baticon:set_image(theme.widget_ac)
-        end
-    end
-})
 
 -- Pulse volume
-local volicon = wibox.widget.imagebox(theme.widget_vol)
+local volicon = wibox.widget({
+    markup = '<span foreground="' .. theme.palette.base0A .. '">' .. icons.volume .. '</span>',
+    widget = wibox.widget.textbox,
+})
 --volicon:buttons(mytable.join(
 --	awful.button({ }, 1, function ()
 --		os.execute("pactl set-sink-mute on")
@@ -238,13 +220,11 @@ local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.pulse({
     settings = function()
         if volume_now.muted == "yes" then
-            volicon:set_image(theme.widget_vol_mute)
+            volicon.markup = '<span foreground="' .. theme.palette.base0A .. '">' .. icons.mute .. '</span>'
         elseif tonumber(volume_now.channel[1]) == 0 then
-            volicon:set_image(theme.widget_vol_no)
-        elseif tonumber(volume_now.channel[1]) <= 50 then
-            volicon:set_image(theme.widget_vol_low)
-        else
-            volicon:set_image(theme.widget_vol)
+            volicon.markup = '<span foreground="' .. theme.palette.base0A .. '">' .. icons.mute .. '</span>'
+        elseif tonumber(volume_now.channel[1]) > 0 then
+            volicon.markup = '<span foreground="' .. theme.palette.base0A .. '">' .. icons.volume .. '</span>'
         end
 
         widget:set_markup(markup.font(theme.font, markup(theme.palette.base0A, " " .. volume_now.channel[1] .. "% ")))
