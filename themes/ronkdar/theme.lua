@@ -92,34 +92,43 @@ local markup = lain.util.markup
 local separators = lain.util.separators
 
 local icons = {
-    note = '  ',
-    pause = ' ',
-    play = ' ',
-    stop = ' ',
-    volume = '  ',
-    mute = ' ',
-    wifi = '⇵   ',
-    temp = '   ',
-    warm = '  ',
-    cool = '  ',
-    disk = '   ',
-    upload = '',
-    download = '',
-    grid = ' ',
-    rows = ' ',
-    cols = ' ',
+    note = '  ',
+    pause = '  ',
+    play = '  ',
+    stop = '  ',
+    volume = '  ',
+    volume2 = '  ',
+    mute = '  ',
+    mute2 = ' ',
+    wifi = ' ⇵   ',
+    temp = '  ',
+    temp2 = '  ',
+    temp3 = '  ',
+    warm = '  ',
+    warm2 = '  ',
+    cool = '  ',
+    cool2 = '  ',
+    disk = '    ',
+    upload = '  ',
+    download = '  ',
+    grid = '  ',
+    rows = '  ',
+    cols = '  ',
 }
 
 -- redshift
-local tempicon = wibox.widget.textbox("🌡")
+local tempicon = {
+    markup = icons.temp2,
+    widget = wibox.widget.textbox,
+}
 theme.redshift = wibox.widget.textbox()
 lain.widget.contrib.redshift.attach(
 	theme.redshift,
 	function (active)
 		if active then
-			theme.redshift:set_markup(markup(theme.palette.base08, markup.font(theme.font, " warm ")))
+			theme.redshift:set_markup(markup(theme.palette.base08, markup.font(theme.font, icons.warm)))
 		else
-			theme.redshift:set_markup(markup(theme.palette.base0D, markup.font(theme.font, " cool ")))
+			theme.redshift:set_markup(markup(theme.palette.base0D, markup.font(theme.font, icons.cool)))
 		end
 	end
 )
@@ -148,7 +157,6 @@ local clock = awful.widget.watch(
 
 -- MPD
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
--- local mpdicon = wibox.widget.imagebox(theme.widget_music)
 local mpdicon = wibox.widget{
     markup = '<span foreground="' .. theme.palette.base0C .. '">' .. icons.note .. icons.stop .. '</span>',
     widget = wibox.widget.textbox
