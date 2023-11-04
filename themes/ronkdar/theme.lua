@@ -91,6 +91,25 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 local markup = lain.util.markup
 local separators = lain.util.separators
 
+local icons = {
+    note = '  ',
+    pause = ' ',
+    play = ' ',
+    stop = ' ',
+    volume = '  ',
+    mute = ' ',
+    wifi = '⇵   ',
+    temp = '   ',
+    warm = '  ',
+    cool = '  ',
+    disk = '   ',
+    upload = '',
+    download = '',
+    grid = ' ',
+    rows = ' ',
+    cols = ' ',
+}
+
 -- redshift
 local tempicon = wibox.widget.textbox("🌡")
 theme.redshift = wibox.widget.textbox()
@@ -118,8 +137,8 @@ theme.weather = lain.widget.weather({
     end
 })
 
+
 -- Textclock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local clock = awful.widget.watch(
     "date +'%a %d %b %R'", 60,
     function(widget, stdout)
@@ -129,7 +148,11 @@ local clock = awful.widget.watch(
 
 -- MPD
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
-local mpdicon = wibox.widget.imagebox(theme.widget_music)
+-- local mpdicon = wibox.widget.imagebox(theme.widget_music)
+local mpdicon = wibox.widget{
+    markup = '<span foreground="' .. theme.palette.base0C .. '">' .. icons.note .. icons.stop .. '</span>',
+    widget = wibox.widget.textbox
+}
 mpdicon:buttons(my_table.join(
     awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
     awful.button({ }, 2, function ()
@@ -149,15 +172,15 @@ theme.mpd = lain.widget.mpd({
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
             title  = mpd_now.title  .. " "
-            mpdicon:set_image(theme.widget_music_on)
+            mpdicon.markup = '<span foreground="' .. theme.palette.base0C .. '">' .. icons.note .. icons.play .. '</span>'
         elseif mpd_now.state == "pause" then
             artist = " mpd "
             title  = "paused "
-            mpdicon:set_image(theme.widget_music)
+            mpdicon.markup = '<span foreground="' .. theme.palette.base0C .. '">' .. icons.note .. icons.pause .. '</span>'
         else
             artist = " mpd "
             title  = "idle "
-            mpdicon:set_image(theme.widget_music)
+            mpdicon.markup = '<span foreground="' .. theme.palette.base0C .. '">' .. icons.note .. icons.stop .. '</span>'
         end
 
         widget:set_markup(markup.font(theme.font, markup(theme.palette.base0C, artist) .. title))
