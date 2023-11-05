@@ -13,7 +13,7 @@ theme.palette = require('onedarkvivid')
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/railscasts"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 --theme.font                                      = "Iosevka Term Extended 11"
-theme.font                                      = os.getenv("AWESOME_FONT") or "Fira Code Regular 12"
+theme.font                                      = os.getenv("AWESOME_FONT") or "Fira Code Regular 14"
 theme.fg_normal                                 = theme.palette.base05
 theme.fg_focus                                  = theme.palette.base08
 theme.fg_urgent                                 = theme.palette.base09
@@ -30,6 +30,7 @@ theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
 theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
+theme.wibar_height                              = dpi(24)
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
@@ -100,7 +101,9 @@ local icons = {
     volume2 = '  ',
     mute = '   ',
     mute2 = ' ',
-    wifi = ' ⇵   ',
+    wifi = ' ⇵ ',
+    wifi2 = '  ',
+    wifi3 = '  ',
     temp = '  ',
     temp2 = '  ',
     temp3 = '  ',
@@ -233,7 +236,10 @@ theme.volume = lain.widget.pulse({
 
 
 -- Net
-local neticon = wibox.widget.imagebox(theme.widget_net)
+local neticon = wibox.widget({
+    markup = icons.wifi,
+    widget = wibox.widget.textbox
+})
 local net = lain.widget.net({
     settings = function()
         widget:set_markup(markup.font(theme.font,
@@ -282,7 +288,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.wibar_height, bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
