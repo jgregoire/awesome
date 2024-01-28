@@ -68,7 +68,7 @@ end
 local chosen_theme = "ronkdar"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "wezterm"
+local terminal     = "kitty"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "neovide"
 local browser      = "firefox"
